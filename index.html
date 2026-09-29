@@ -84,7 +84,7 @@ let current=null,timer=null;
 function save(){localStorage.setItem("trailStrong",JSON.stringify(data));updateStats()}
 function show(id){document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active")); if(id==="home")document.querySelectorAll(".nav")[0].classList.add("active"); if(id==="progress"){document.querySelectorAll(".nav")[1].classList.add("active");renderProgress()}}
 function openWorkout(type){
-current={type,done:0,exercises:workouts[type].ex.map((e,i)=>({name:e[0],target:e[1],rest:e[2],tip:e[3],sets:Array.from({length:parseInt(e[1])},()=>({kg:"",reps:"",done:false}))}))};
+const defaults=type==="lower"?[4,3,3,3,2,3,2]:[3,3,3,2,3,2,2,3]; current={type,done:0,exercises:workouts[type].ex.map((e,i)=>({name:e[0],target:e[1],rest:e[2],tip:e[3],sets:Array.from({length:defaults[i]},()=>({kg:"",reps:"",done:false}))}))};
 document.getElementById("workoutType").textContent=workouts[type].type;
 document.getElementById("workoutTitle").textContent=workouts[type].title;
 renderWorkout();show("workout")
