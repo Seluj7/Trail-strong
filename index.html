@@ -1,1 +1,99 @@
-<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Trail Strong</title><style>body{font-family:system-ui;margin:0;background:#f5f3ed;color:#173f35}main{max-width:520px;margin:auto;padding:24px}h1{font-size:32px}button{width:100%;padding:16px;border:0;border-radius:14px;background:#173f35;color:white;font-weight:800;margin:8px 0}.card{background:white;padding:18px;border-radius:18px;margin:12px 0}small{color:#718078}</style><main><h1>🏔️ TRAIL STRONG</h1><small>Construis tes jambes. Grimpe plus fort.</small><div class="card"><h2>🍑 Jambes & Fessiers</h2><p>Hip thrust · Presse · RDL · Bulgarian · Step-down · Mollets · Abduction</p><button onclick="alert('Séance 1 — 60 min\n\nHip thrust 4×8–10\nPresse 3×8–10\nRDL 3×8–10\nBulgarian 3×8/jambe\nStep-down 2×8/jambe\nMollets 3×12–15\nAbduction 2×15–20')">Commencer</button></div><div class="card"><h2>💪 Haut du corps & Fessiers</h2><p>Tirage · Développé · Rowing · Épaules · Hip thrust · Leg curl · Face pull · Gainage</p><button onclick="alert('Séance 2 — 60 min\n\nTirage vertical 3×8–10\nDéveloppé haltères 3×8–10\nRowing 3×8–10\nDéveloppé épaules 2×10–12\nHip thrust 3×10–12\nLeg curl 2×10–12\nFace pull 2×15\nGainage 3 tours')">Commencer</button></div><div class="card"><h3>🏃 Semaine</h3><p>2 séances de renforcement + 2 sorties trail. Le renfo complète le trail.</p></div></main>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#173f35">
+<title>Trail Strong</title>
+<style>
+:root{--bg:#f5f3ed;--card:#fff;--ink:#173f35;--muted:#718078;--accent:#d8a84e;--line:#e4e5df;--ok:#2f8068;--danger:#b95c4d}
+*{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:var(--bg);color:#18231f}
+.app{max-width:520px;margin:auto;min-height:100vh;padding-bottom:90px}
+header{background:linear-gradient(145deg,#173f35,#285d4e);color:#fff;padding:28px 20px 24px;border-radius:0 0 28px 28px}
+.logo{font-weight:900;letter-spacing:.5px;font-size:27px}.tag{opacity:.78;margin-top:4px;font-size:13px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:20px}.stat{background:#ffffff16;border:1px solid #ffffff20;border-radius:15px;padding:11px}.stat b{display:block;font-size:20px}.stat span{font-size:11px;opacity:.75}
+main{padding:18px}.view{display:none}.view.active{display:block}
+h2{margin:5px 0 14px;font-size:22px} h3{margin:0 0 8px}.sub{color:var(--muted);font-size:13px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:19px;padding:17px;margin-bottom:13px;box-shadow:0 4px 18px #183f3508}
+.session{display:flex;align-items:center;gap:14px}.icon{width:48px;height:48px;border-radius:14px;background:#edf2ed;display:grid;place-items:center;font-size:24px}.session .grow{flex:1}.pill{font-size:11px;background:#edf2ed;color:var(--ok);padding:5px 8px;border-radius:20px;font-weight:700}
+button{border:0;border-radius:13px;padding:11px 14px;font-weight:750;cursor:pointer;background:var(--ink);color:#fff}.secondary{background:#edf0eb;color:var(--ink)}.gold{background:var(--accent);color:#fff}.danger{background:#f8e8e5;color:var(--danger)}
+.row{display:flex;gap:9px;align-items:center}.between{justify-content:space-between}.wrap{flex-wrap:wrap}
+.exercise{border-top:1px solid var(--line);padding:15px 0}.exercise:first-child{border-top:0}.exhead{display:flex;justify-content:space-between;gap:8px}.exname{font-weight:800}.meta{font-size:12px;color:var(--muted);margin-top:3px}.sets{display:grid;grid-template-columns:34px 1fr 1fr 42px;gap:7px;align-items:center;margin-top:9px}.sets label{font-size:11px;color:var(--muted)}input{width:100%;border:1px solid var(--line);background:#fafbf8;border-radius:9px;padding:9px;font-size:14px}input:focus{outline:2px solid #d5e2db}.check{width:38px;height:38px;padding:0;border-radius:10px;background:#edf0eb;color:var(--ink)}.check.done{background:var(--ok);color:#fff}
+.progress{height:9px;background:#e7e9e2;border-radius:20px;overflow:hidden}.bar{height:100%;background:var(--accent);width:0}
+.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(3,1fr);padding:9px 8px 10px;z-index:5}.nav{background:none;color:var(--muted);padding:8px 4px;font-size:11px}.nav.active{color:var(--ink);background:#edf2ed}
+.timer{position:fixed;right:15px;bottom:82px;background:var(--ink);color:#fff;border-radius:17px;padding:12px 14px;display:none;box-shadow:0 8px 24px #0003;z-index:10}.timer b{font-size:20px}
+.badge{display:flex;align-items:center;gap:12px}.badge .medal{font-size:30px}.locked{opacity:.4}
+.toast{position:fixed;top:18px;left:50%;transform:translateX(-50%);background:#173f35;color:white;padding:12px 16px;border-radius:12px;display:none;z-index:20;font-size:13px}
+.small{font-size:12px}.goldtext{color:#a47725;font-weight:800}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="logo">🏔️ TRAIL STRONG</div><div class="tag">Construis tes jambes. Grimpe plus fort. Descends plus solide.</div>
+  <div class="stats"><div class="stat"><b id="level">Sentier</b><span>Niveau</span></div><div class="stat"><b id="xp">0</b><span>D+ virtuel</span></div><div class="stat"><b id="weeks">0</b><span>Semaines</span></div></div>
+</header>
+<main>
+<section id="home" class="view active">
+<h2>Ta semaine</h2>
+<div class="card"><div class="row between"><b>Progression</b><span class="small" id="weekCount">0 / 4 séances</span></div><div class="progress" style="margin-top:10px"><div class="bar" id="weekBar"></div></div></div>
+<div class="card"><div class="session"><div class="icon">🍑</div><div class="grow"><b>Jambes & Fessiers</b><div class="sub">Force • trail • 60 min</div></div><span class="pill" id="lowerStatus">À faire</span></div><button style="width:100%;margin-top:13px" onclick="openWorkout('lower')">Commencer</button></div>
+<div class="card"><div class="session"><div class="icon">💪</div><div class="grow"><b>Haut du corps & Fessiers</b><div class="sub">Posture • force • 60 min</div></div><span class="pill" id="upperStatus">À faire</span></div><button style="width:100%;margin-top:13px" onclick="openWorkout('upper')">Commencer</button></div>
+<div class="card"><h3>🏃 Les 2 sorties trail</h3><div class="sub">Le renforcement complète le trail : garde tes deux sorties hebdomadaires, dont une sortie qualitative ou longue.</div></div>
+</section>
+<section id="workout" class="view">
+<div class="row between"><div><div class="sub" id="workoutType"></div><h2 id="workoutTitle">Séance</h2></div><button class="secondary" onclick="show('home')">Quitter</button></div>
+<div class="card"><div class="row between"><b id="doneText">0 / 0 séries</b><span class="goldtext" id="workoutXP">+0 D+</span></div><div class="progress" style="margin-top:9px"><div class="bar" id="workoutBar"></div></div></div>
+<div id="exerciseList" class="card"></div>
+<button class="gold" style="width:100%;margin-top:2px" onclick="finishWorkout()">🏁 Terminer la séance</button>
+</section>
+<section id="progress" class="view">
+<h2>Ta progression</h2>
+<div class="card"><h3>🏔️ Niveau</h3><div class="row between" style="margin:12px 0 7px"><b id="level2">Sentier</b><span class="small" id="levelHint"></span></div><div class="progress"><div class="bar" id="levelBar"></div></div></div>
+<div class="card"><h3>🏆 Records</h3><div id="records"></div></div>
+<div class="card"><h3>🎖️ Badges</h3><div id="badges"></div></div>
+<div class="card"><h3>📚 Historique</h3><div id="history"></div></div>
+</section>
+</main>
+<div class="timer" id="timer">Repos <b id="timerVal">90</b>s <button class="secondary" style="padding:5px 8px;margin-left:7px" onclick="stopTimer()">×</button></div>
+<nav class="bottom"><button class="nav active" onclick="show('home')">🏠<br>Accueil</button><button class="nav" onclick="show('progress')">📈<br>Progression</button><button class="nav" onclick="resetData()">↻<br>Réinitialiser</button></nav>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const workouts={
+lower:{title:"Jambes & Fessiers",type:"SÉANCE 1 • 60 MIN",ex:[
+["Hip Thrust","4×8–10",90,"Fessiers • pousse fort dans le sol, bassin neutre"],
+["Presse à cuisses","3×8–10",90,"Quadriceps + fessiers • amplitude contrôlée"],
+["Soulevé de terre roumain","3×8–10",90,"Ischios + fessiers • 3 s à la descente"],
+["Bulgarian split squat","3×8 / jambe",75,"Unilatéral • stabilité utile sur sentiers techniques"],
+["Step-down","2×8 / jambe",60,"Descente lente 3–4 s • préparation aux descentes"],
+["Mollets debout","3×12–15",60,"Amplitude complète • contrôle"],
+["Abduction machine","2×15–20",45,"Fessiers moyens • mouvement propre"]]},
+upper:{title:"Haut du corps & Fessiers",type:"SÉANCE 2 • 60 MIN",ex:[
+["Tirage vertical","3×8–10",75,"Dos + bras • épaules basses"],
+["Développé couché haltères","3×8–10",75,"Pectoraux • contrôle"],
+["Rowing poulie","3×8–10",75,"Dos • ramène les coudes"],
+["Développé épaules haltères","2×10–12",60,"Épaules • sans cambrer"],
+["Hip Thrust / Glute bridge","3×10–12",75,"Deuxième stimulation fessiers"],
+["Leg curl","2×10–12",60,"Ischios • contrôle"],
+["Face pull","2×15",45,"Haut du dos • posture"],
+["Pallof press + dead bug + planche","3 tours",30,"Gainage • stabilité du tronc"]]}
+};
+let data=JSON.parse(localStorage.getItem("trailStrong")||'{"xp":0,"week":0,"completed":{},"history":[],"records":{}}');
+let current=null,timer=null;
+function save(){localStorage.setItem("trailStrong",JSON.stringify(data));updateStats()}
+function show(id){document.querySelectorAll(".view").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".nav").forEach(x=>x.classList.remove("active")); if(id==="home")document.querySelectorAll(".nav")[0].classList.add("active"); if(id==="progress"){document.querySelectorAll(".nav")[1].classList.add("active");renderProgress()}}
+function openWorkout(type){current={type,done:0,total:workouts[type].ex.reduce((a,e)=>a+parseInt(e[1]),0),series:{}};document.getElementById("workoutType").textContent=workouts[type].type;document.getElementById("workoutTitle").textContent=workouts[type].title;let html="";workouts[type].ex.forEach((e,i)=>{let n=parseInt(e[1]);html+=`<div class="exercise"><div class="exhead"><div><div class="exname">${e[0]}</div><div class="meta">${e[1]} • repos ${e[2]}s</div></div><button class="secondary small" onclick="toast('${e[3]}')">Conseil</button></div><div class="sets">`+Array.from({length:n},(_,s)=>`<label>S${s+1}</label><input id="w${i}s${s}" type="number" step="0.5" placeholder="kg"><input id="r${i}s${s}" type="number" placeholder="reps"><button class="check" id="c${i}s${s}" onclick="completeSet(${i},${s},${e[2]})">✓</button>`).join("")+"</div></div>"});document.getElementById("exerciseList").innerHTML=html;updateWorkout();show("workout")}
+function completeSet(i,s,rest){let b=document.getElementById(`c${i}s${s}`);if(b.classList.contains("done"))return;b.classList.add("done");current.done++;current.series[`${i}-${s}`]={kg:document.getElementById(`w${i}s${s}`).value,reps:document.getElementById(`r${i}s${s}`).value};startTimer(rest);updateWorkout();save()}
+function updateWorkout(){document.getElementById("doneText").textContent=`${current.done} / ${current.total} séries`;document.getElementById("workoutBar").style.width=(current.done/current.total*100)+"%";document.getElementById("workoutXP").textContent=`+${current.done*10} D+`}
+function startTimer(sec){clearInterval(timer);let left=sec;document.getElementById("timer").style.display="block";document.getElementById("timerVal").textContent=left;timer=setInterval(()=>{left--;document.getElementById("timerVal").textContent=left;if(left<=0){clearInterval(timer);toast("🔥 Repos terminé — à toi !");document.getElementById("timer").style.display="none"}},1000)}
+function stopTimer(){clearInterval(timer);document.getElementById("timer").style.display="none"}
+function finishWorkout(){if(!current||current.done<current.total){toast("Valide toutes les séries avant de terminer 💪");return}let t=new Date().toLocaleDateString("fr-FR");data.xp+=current.done*10;data.completed[current.type]=true;data.history.unshift({date:t,type:workouts[current.type].title,xp:current.done*10});if(data.history.length>30)data.history.pop();data.week=Math.max(data.week,Object.keys(data.completed).length);save();stopTimer();toast("🏁 Séance validée ! +"+current.done*10+" D+");setTimeout(()=>show("home"),700)}
+function updateStats(){let xp=data.xp, levels=["Sentier","Crête","Col","Sommet","Alpiniste","Toit du monde"],idx=Math.min(Math.floor(xp/400),levels.length-1);document.getElementById("level").textContent=levels[idx];document.getElementById("xp").textContent=xp;document.getElementById("weeks").textContent=Math.floor(data.history.length/2);let done=Object.keys(data.completed).length;document.getElementById("weekCount").textContent=`${done} / 4 séances`;document.getElementById("weekBar").style.width=Math.min(done/4*100,100)+"%";document.getElementById("lowerStatus").textContent=data.completed.lower?"✓ Fait":"À faire";document.getElementById("upperStatus").textContent=data.completed.upper?"✓ Fait":"À faire"}
+function renderProgress(){let xp=data.xp,idx=Math.min(Math.floor(xp/400),5),names=["Sentier","Crête","Col","Sommet","Alpiniste","Toit du monde"],next=idx<5?(idx+1)*400:null;document.getElementById("level2").textContent=names[idx];document.getElementById("levelHint").textContent=next?`${next-xp} D+ avant ${names[idx+1]}`:"Niveau maximum";document.getElementById("levelBar").style.width=((xp%400)/400*100)+"%";let rec=document.getElementById("records");rec.innerHTML=data.history.length?data.history.slice(0,8).map(h=>`<div class="row between" style="padding:8px 0;border-bottom:1px solid var(--line)"><span>${h.type}</span><b>+${h.xp} D+</b></div>`).join(""):"<div class='sub'>Tes performances apparaîtront ici.</div>";let bd=[["🥾","Premier pas",data.history.length>=1],["⛰️","Première ascension",data.xp>=400],["🔥","Régularité",data.history.length>=4],["🍑","Fessiers en construction",data.history.length>=6],["🏔️","Vers le sommet",data.xp>=1200]];document.getElementById("badges").innerHTML=bd.map(b=>`<div class="badge ${b[2]?"":"locked"}" style="padding:8px 0"><span class="medal">${b[0]}</span><div><b>${b[1]}</b><div class="sub">${b[2]?"Débloqué":"À débloquer"}</div></div></div>`).join("");document.getElementById("history").innerHTML=data.history.length?data.history.map(h=>`<div class="row between" style="padding:8px 0;border-bottom:1px solid var(--line)"><span>${h.date}</span><span class="small">${h.type}</span></div>`).join(""):"<div class='sub'>Aucune séance terminée.</div>"}
+function resetData(){if(confirm("Réinitialiser toute la progression ?")){localStorage.removeItem("trailStrong");location.reload()}}
+function toast(t){let x=document.getElementById("toast");x.textContent=t;x.style.display="block";clearTimeout(window.tt);window.tt=setTimeout(()=>x.style.display="none",2200)}
+updateStats();
+</script>
+</body>
+</html>
